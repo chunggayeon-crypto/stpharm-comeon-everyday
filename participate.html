@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Come On Everyday 참여하기 - 에스티팜</title>
+    <meta name="description"
+        content="에스티팜 Come on Everyday 활동에 참여하세요. 파파라치, 포스터 만들기, 스티커 인증, Come On 한마디 등 다양한 활동이 준비되어 있습니다.">
+    <meta property="og:title" content="Come On Everyday 참여하기 - 에스티팜">
+    <meta property="og:description" content="다양한 활동에 참여하고, 고객중심 마인드를 함께 실천해 보세요!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ===== 네비게이션 ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon"><i class="fas fa-star"></i></div>
+                <span>Come on <span class="highlight">Everyday!</span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">홈</a>
+                <a href="mindset.html">고객중심 마인드</a>
+                <a href="participate.html" class="active">참여하기</a>
+                <a href="admin.html" class="nav-admin-btn"><i class="fas fa-cog"></i> 관리자</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴 열기">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== 페이지 헤더 ===== -->
+    <section class="page-hero">
+        <div class="section-container">
+            <div class="hero-badge"><i class="fas fa-hands-clapping"></i> Participate</div>
+            <h1 class="hero-title">Come On Everyday <span class="accent">참여하기</span></h1>
+            <p class="lead">다양한 활동에 참여하고, 고객중심 마인드를 함께 실천해 보세요!</p>
+        </div>
+    </section>
+
+    <!-- ===== 참여 활동 섹션 ===== -->
+    <section class="section" style="background: var(--surface-white);">
+        <div class="section-container">
+
+            <!-- 활동 탭 -->
+            <div class="activity-tabs fade-up">
+                <button class="tab-btn active" data-tab="paparazzi">
+                    <i class="fas fa-camera"></i> Come On 파파라치!
+                </button>
+                <button class="tab-btn" data-tab="poster">
+                    <i class="fas fa-palette"></i> 포스터 만들기
+                </button>
+                <button class="tab-btn" data-tab="sticker">
+                    <i class="fas fa-heart"></i> 스티커 인증
+                </button>
+                <button class="tab-btn" data-tab="oneword">
+                    <i class="fas fa-comment"></i> 나의 Come On 한마디
+                </button>
+            </div>
+
+            <!-- ===== 탭 1: Come On 파파라치! ===== -->
+            <div class="tab-content active" id="tab-paparazzi">
+                <div class="activity-header fade-up">
+                    <div class="activity-info">
+                        <h3>📸 Come On 파파라치!</h3>
+                        <p>우리 팀 혹은 타부서 동료가 고객중심 마인드를 실천하는 순간 또는 사례를 글이나 사진으로 제보해 주세요!</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openModal('paparazzi')">
+                        <i class="fas fa-pen"></i> 제보하기
+                    </button>
+                </div>
+                <div class="posts-grid" id="paparazzi-posts">
+                    <!-- 게시글이 JS로 렌더링됩니다 -->
+                </div>
+                <div class="empty-state" id="paparazzi-empty" style="display:none;">
+                    <i class="fas fa-camera-retro"></i>
+                    <p>아직 등록된 제보가 없습니다. 첫 번째 파파라치가 되어 주세요!</p>
+                    <button class="btn btn-primary btn-sm" onclick="openModal('paparazzi')">
+                        <i class="fas fa-pen"></i> 제보하기
+                    </button>
+                </div>
+            </div>
+
+            <!-- ===== 탭 2: 포스터 만들기 ===== -->
+            <div class="tab-content" id="tab-poster">
+                <div class="activity-header fade-up">
+                    <div class="activity-info">
+                        <h3>🎨 우리 팀의 고객중심 마인드 실천 포스터 만들기</h3>
+                        <p>고객중심 마인드를 실천하는 우리 팀의 다짐을 AI를 활용하여 포스터로 제작하고 업로드해 주세요!</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openModal('poster')">
+                        <i class="fas fa-upload"></i> 포스터 업로드
+                    </button>
+                </div>
+                <div class="posts-grid" id="poster-posts">
+                    <!-- 게시글이 JS로 렌더링됩니다 -->
+                </div>
+                <div class="empty-state" id="poster-empty" style="display:none;">
+                    <i class="fas fa-image"></i>
+                    <p>아직 등록된 포스터가 없습니다. 우리 팀의 다짐 포스터를 올려주세요!</p>
+                    <button class="btn btn-primary btn-sm" onclick="openModal('poster')">
+                        <i class="fas fa-upload"></i> 포스터 업로드
+                    </button>
+                </div>
+            </div>
+
+            <!-- ===== 탭 3: 스티커 인증 ===== -->
+            <div class="tab-content" id="tab-sticker">
+                <div class="activity-header fade-up">
+                    <div class="activity-info">
+                        <h3>⭐ 스티커로 고마운 동료에게 마음 전하기</h3>
+                        <p>고객중심 마인드 마스코트 스티커로 고마운 동료의 모니터나 사물함에 스티커를 붙여주고 인증해 주세요!</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openModal('sticker')">
+                        <i class="fas fa-camera"></i> 인증하기
+                    </button>
+                </div>
+                <div class="posts-grid" id="sticker-posts">
+                    <!-- 게시글이 JS로 렌더링됩니다 -->
+                </div>
+                <div class="empty-state" id="sticker-empty" style="display:none;">
+                    <i class="fas fa-star"></i>
+                    <p>아직 인증된 스티커가 없습니다. 고마운 동료에게 마음을 전해보세요!</p>
+                    <button class="btn btn-primary btn-sm" onclick="openModal('sticker')">
+                        <i class="fas fa-camera"></i> 인증하기
+                    </button>
+                </div>
+            </div>
+
+            <!-- ===== 탭 4: 나의 Come On 한마디 ===== -->
+            <div class="tab-content" id="tab-oneword">
+                <div class="activity-header fade-up">
+                    <div class="activity-info">
+                        <h3>💬 나의 Come On 한마디</h3>
+                        <p>사내 프로필 상태 메시지나 메일 서명에 내가 집중하고 싶은 고객중심 마인드 키워드를 기입하고 인증해 주세요!</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openModal('oneword')">
+                        <i class="fas fa-camera"></i> 인증하기
+                    </button>
+                </div>
+                <div class="posts-grid" id="oneword-posts">
+                    <!-- 게시글이 JS로 렌더링됩니다 -->
+                </div>
+                <div class="empty-state" id="oneword-empty" style="display:none;">
+                    <i class="fas fa-comment-dots"></i>
+                    <p>아직 인증이 없습니다. 나만의 Come On 한마디를 공유해 주세요!</p>
+                    <button class="btn btn-primary btn-sm" onclick="openModal('oneword')">
+                        <i class="fas fa-camera"></i> 인증하기
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== 모달: 파파라치 제보 ===== -->
+    <div class="modal-overlay" id="modal-paparazzi">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>📸 Come On 파파라치 제보</h3>
+                <button class="modal-close" onclick="closeModal('paparazzi')">✕</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-paparazzi" onsubmit="submitPost(event, 'paparazzi')">
+                    <div class="form-group">
+                        <label for="papa-title">제목</label>
+                        <input type="text" id="papa-title" placeholder="제보 제목을 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="papa-author">작성자</label>
+                        <input type="text" id="papa-author" placeholder="이름 / 부서" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="papa-tag">마인드 카테고리</label>
+                        <select id="papa-tag">
+                            <option value="적극적 소통">적극적 소통</option>
+                            <option value="유연성">유연성</option>
+                            <option value="긴박감">긴박감</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="papa-content">내용</label>
+                        <textarea id="papa-content" placeholder="동료의 고객중심 마인드 실천 사례를 알려주세요!" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>사진 첨부 (선택)</label>
+                        <div class="file-upload" onclick="document.getElementById('papa-file').click()">
+                            <i class="fas fa-cloud-arrow-up"></i>
+                            <p>클릭하여 이미지를 업로드하세요</p>
+                            <p style="font-size: 0.75rem; color: var(--text-light);">JPG, PNG, GIF (최대 5MB)</p>
+                        </div>
+                        <input type="file" id="papa-file" accept="image/*" style="display:none">
+                    </div>
+                    <div class="modal-footer" style="padding: 0; border: none;">
+                        <button type="button" class="btn btn-secondary btn-sm"
+                            onclick="closeModal('paparazzi')">취소</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i>
+                            제보하기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 모달: 포스터 업로드 ===== -->
+    <div class="modal-overlay" id="modal-poster">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>🎨 포스터 업로드</h3>
+                <button class="modal-close" onclick="closeModal('poster')">✕</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-poster" onsubmit="submitPost(event, 'poster')">
+                    <div class="form-group">
+                        <label for="poster-team">팀명</label>
+                        <input type="text" id="poster-team" placeholder="팀 이름을 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="poster-title">포스터 제목</label>
+                        <input type="text" id="poster-title" placeholder="포스터 제목을 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label>포스터 이미지</label>
+                        <div class="file-upload" onclick="document.getElementById('poster-file').click()">
+                            <i class="fas fa-cloud-arrow-up"></i>
+                            <p>클릭하여 포스터 이미지를 업로드하세요</p>
+                            <p style="font-size: 0.75rem; color: var(--text-light);">JPG, PNG (최대 10MB)</p>
+                        </div>
+                        <input type="file" id="poster-file" accept="image/*" style="display:none" required>
+                    </div>
+                    <div class="modal-footer" style="padding: 0; border: none;">
+                        <button type="button" class="btn btn-secondary btn-sm"
+                            onclick="closeModal('poster')">취소</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-upload"></i> 업로드</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 모달: 스티커 인증 ===== -->
+    <div class="modal-overlay" id="modal-sticker">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>⭐ 스티커 인증</h3>
+                <button class="modal-close" onclick="closeModal('sticker')">✕</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-sticker" onsubmit="submitPost(event, 'sticker')">
+                    <div class="form-group">
+                        <label for="sticker-author">작성자</label>
+                        <input type="text" id="sticker-author" placeholder="이름 / 부서" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sticker-colleague">고마운 동료</label>
+                        <input type="text" id="sticker-colleague" placeholder="스티커를 붙여줄 동료 이름" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sticker-message">한 줄 메시지</label>
+                        <input type="text" id="sticker-message" placeholder="고마운 마음을 한 줄로 전해주세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label>인증 사진</label>
+                        <div class="file-upload" onclick="document.getElementById('sticker-file').click()">
+                            <i class="fas fa-cloud-arrow-up"></i>
+                            <p>스티커를 붙인 사진을 업로드하세요</p>
+                            <p style="font-size: 0.75rem; color: var(--text-light);">JPG, PNG (최대 5MB)</p>
+                        </div>
+                        <input type="file" id="sticker-file" accept="image/*" style="display:none" required>
+                    </div>
+                    <div class="modal-footer" style="padding: 0; border: none;">
+                        <button type="button" class="btn btn-secondary btn-sm"
+                            onclick="closeModal('sticker')">취소</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-check"></i> 인증하기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 모달: 나의 Come On 한마디 ===== -->
+    <div class="modal-overlay" id="modal-oneword">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>💬 나의 Come On 한마디</h3>
+                <button class="modal-close" onclick="closeModal('oneword')">✕</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-oneword" onsubmit="submitPost(event, 'oneword')">
+                    <div class="form-group">
+                        <label for="oneword-author">작성자</label>
+                        <input type="text" id="oneword-author" placeholder="이름 / 부서" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="oneword-keyword">집중하고 싶은 키워드</label>
+                        <select id="oneword-keyword">
+                            <option value="적극적 소통">적극적 소통 (Proactive Communication)</option>
+                            <option value="유연성">유연성 (Flexibility)</option>
+                            <option value="긴박감">긴박감 (Sense of Urgency)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="oneword-message">나의 한마디</label>
+                        <textarea id="oneword-message" placeholder="고객중심 마인드에 대한 나의 다짐을 적어주세요" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>인증 스크린샷</label>
+                        <div class="file-upload" onclick="document.getElementById('oneword-file').click()">
+                            <i class="fas fa-cloud-arrow-up"></i>
+                            <p>프로필이나 메일 서명 스크린샷을 업로드하세요</p>
+                            <p style="font-size: 0.75rem; color: var(--text-light);">JPG, PNG (최대 5MB)</p>
+                        </div>
+                        <input type="file" id="oneword-file" accept="image/*" style="display:none">
+                    </div>
+                    <div class="modal-footer" style="padding: 0; border: none;">
+                        <button type="button" class="btn btn-secondary btn-sm"
+                            onclick="closeModal('oneword')">취소</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-check"></i> 인증하기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 게시글 상세 모달 ===== -->
+    <div class="modal-overlay" id="modal-detail">
+        <div class="modal" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3 id="detail-title">게시글 제목</h3>
+                <button class="modal-close" onclick="closeModal('detail')">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="detail-image" style="margin-bottom: 1.5rem; border-radius: 12px; overflow: hidden;"></div>
+                <div id="detail-meta"
+                    style="display: flex; gap: 1rem; margin-bottom: 1rem; font-size: 0.875rem; color: var(--text-secondary);">
+                </div>
+                <div id="detail-content" style="line-height: 1.8;"></div>
+                <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.06);">
+                    <p style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">공유하기</p>
+                    <div class="share-buttons">
+                        <button class="share-btn email" title="이메일로 공유" onclick="shareEmail()"><i
+                                class="fas fa-envelope"></i></button>
+                        <button class="share-btn link" title="링크 복사" onclick="copyLink()"><i
+                                class="fas fa-link"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 푸터 ===== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>Come on <span>Everyday!</span></h3>
+                <p>ST Pharm의 고객중심 마인드 내재화를 위한<br>조직문화 활동 공유 플랫폼입니다.</p>
+            </div>
+            <div class="footer-links">
+                <h4>바로가기</h4>
+                <a href="index.html">홈</a>
+                <a href="mindset.html">고객중심 마인드</a>
+                <a href="participate.html">참여하기</a>
+                <a href="admin.html">관리자</a>
+            </div>
+            <div class="footer-links">
+                <h4>문의</h4>
+                <a href="#">조직문화팀</a>
+                <a href="#">comeon@stpharm.co.kr</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 ST Pharm. All Rights Reserved.</span>
+            <span>Come on Everyday! by 조직문화팀</span>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="맨 위로">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    <div class="toast" id="toast"></div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/posts.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

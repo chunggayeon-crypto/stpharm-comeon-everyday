@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 대시보드 - Come on Everyday!</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <!-- ===== 네비게이션 ===== -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon"><i class="fas fa-star"></i></div>
+                <span>Come on <span class="highlight">Everyday!</span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">홈</a>
+                <a href="mindset.html">고객중심 마인드</a>
+                <a href="participate.html">참여하기</a>
+                <a href="admin.html" class="nav-admin-btn active"><i class="fas fa-cog"></i> 관리자</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴 열기">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="admin-layout">
+
+        <!-- ===== 사이드바 ===== -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <h3>⚙️ 관리자 패널</h3>
+                <p>Come on Everyday! 관리</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="active" data-section="dashboard"><i class="fas fa-chart-pie"></i> 대시보드</a>
+                <a href="#" data-section="posts"><i class="fas fa-newspaper"></i> 게시글 관리</a>
+                <div class="sidebar-divider"></div>
+                <a href="#" data-section="content"><i class="fas fa-edit"></i> 콘텐츠 편집</a>
+                <a href="#" data-section="design"><i class="fas fa-palette"></i> 디자인 설정</a>
+                <div class="sidebar-divider"></div>
+                <a href="index.html"><i class="fas fa-external-link-alt"></i> 사이트 보기</a>
+            </nav>
+        </aside>
+
+        <!-- ===== 메인 콘텐츠 ===== -->
+        <main class="admin-content">
+
+            <!-- ===== 섹션: 대시보드 ===== -->
+            <div class="admin-section active" id="section-dashboard">
+                <div class="admin-page-header">
+                    <h1>📊 대시보드</h1>
+                    <p>Come on Everyday! 활동 현황을 한눈에 확인하세요.</p>
+                </div>
+
+                <!-- 통계 카드 -->
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card">
+                        <div class="stat-icon mint"><i class="fas fa-file-alt"></i></div>
+                        <div class="stat-info">
+                            <h4>전체 게시글</h4>
+                            <div class="stat-number" id="statTotal">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-camera"></i></div>
+                        <div class="stat-info">
+                            <h4>파파라치</h4>
+                            <div class="stat-number" id="statPaparazzi">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange"><i class="fas fa-palette"></i></div>
+                        <div class="stat-info">
+                            <h4>포스터</h4>
+                            <div class="stat-number" id="statPoster">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon red"><i class="fas fa-star"></i></div>
+                        <div class="stat-info">
+                            <h4>스티커 인증</h4>
+                            <div class="stat-number" id="statSticker">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple"><i class="fas fa-comment"></i></div>
+                        <div class="stat-info">
+                            <h4>Come On 한마디</h4>
+                            <div class="stat-number" id="statOneword">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 최근 활동 -->
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>🕐 최근 활동</h3>
+                    </div>
+                    <div class="admin-card-body">
+                        <ul class="activity-list" id="recentActivity">
+                            <!-- JS로 렌더링 -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 섹션: 게시글 관리 ===== -->
+            <div class="admin-section" id="section-posts" style="display:none;">
+                <div class="admin-page-header">
+                    <h1>📝 게시글 관리</h1>
+                    <p>활동별 게시글을 확인하고 관리하세요.</p>
+                </div>
+
+                <!-- 카테고리 탭 -->
+                <div class="admin-tabs">
+                    <button class="admin-tab-btn active" data-post-tab="paparazzi">📸 파파라치</button>
+                    <button class="admin-tab-btn" data-post-tab="poster">🎨 포스터</button>
+                    <button class="admin-tab-btn" data-post-tab="sticker">⭐ 스티커</button>
+                    <button class="admin-tab-btn" data-post-tab="oneword">💬 한마디</button>
+                </div>
+
+                <!-- 게시글 테이블 -->
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>게시글 목록</h3>
+                        <button class="btn btn-primary btn-sm" id="btnResetPosts" onclick="resetPostsData()">
+                            <i class="fas fa-rotate"></i> 샘플 데이터 복원
+                        </button>
+                    </div>
+                    <div class="admin-card-body" style="padding: 0;">
+                        <table class="admin-table" id="postsTable">
+                            <thead>
+                                <tr>
+                                    <th>제목</th>
+                                    <th>작성자</th>
+                                    <th>카테고리</th>
+                                    <th>날짜</th>
+                                    <th>관리</th>
+                                </tr>
+                            </thead>
+                            <tbody id="postsTableBody">
+                                <!-- JS로 렌더링 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 섹션: 콘텐츠 편집 ===== -->
+            <div class="admin-section" id="section-content" style="display:none;">
+                <div class="admin-page-header">
+                    <h1>✏️ 콘텐츠 편집</h1>
+                    <p>웹사이트의 텍스트 콘텐츠를 자유롭게 수정하세요.</p>
+                </div>
+
+                <!-- 메인 페이지 콘텐츠 -->
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>🏠 메인 페이지</h3>
+                    </div>
+                    <div class="admin-card-body">
+                        <form class="admin-form" id="contentFormMain">
+                            <div class="form-group">
+                                <label><i class="fas fa-heading"></i> 히어로 타이틀</label>
+                                <textarea id="edit-heroTitle" rows="2">함께 만들어가는
+에스티팜의 매일(Every day)</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-align-left"></i> 히어로 서브 텍스트</label>
+                                <textarea id="edit-heroSubtitle"
+                                    rows="2">글로벌 탑티어 CDMO 기업으로 나아가기 위해, 에스티팜 구성원 모두가 고객중심 마인드를 일상 속에서 실천합니다.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-info-circle"></i> 활동 소개 제목</label>
+                                <input type="text" id="edit-introTitle" value="Come On Everyday란?">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-align-left"></i> 활동 소개 설명</label>
+                                <textarea id="edit-introDesc"
+                                    rows="3">에스티팜 구성원들이 고객중심 마인드를 일상 속에서 자연스럽게 실천하고, 서로의 노력을 공유하며 함께 성장하는 조직문화 활동입니다.</textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="saveContent('main')">
+                                <i class="fas fa-save"></i> 메인 페이지 저장
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 마인드 페이지 콘텐츠 -->
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>🎯 고객중심 마인드 페이지</h3>
+                    </div>
+                    <div class="admin-card-body">
+                        <form class="admin-form" id="contentFormMindset">
+                            <div class="form-group">
+                                <label><i class="fas fa-comment-dots"></i> 적극적 소통 설명</label>
+                                <textarea id="edit-mindsetDesc1"
+                                    rows="4">고객과 동료에게 먼저 다가가 소통합니다. 문제가 발생하기 전에 선제적으로 의견을 나누고, 열린 마음으로 다양한 관점을 수용합니다. 적극적 소통은 신뢰를 쌓고 더 나은 결과를 만드는 가장 강력한 도구입니다.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-water"></i> 유연성 설명</label>
+                                <textarea id="edit-mindsetDesc2"
+                                    rows="4">변화하는 환경과 고객의 요구에 유연하게 대응합니다. 고정관념에서 벗어나 창의적인 해결책을 찾고, 다양한 상황에 맞춰 최적의 방법을 선택합니다. 유연한 사고와 행동이 글로벌 경쟁력의 핵심입니다.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-bolt"></i> 긴박감 설명</label>
+                                <textarea id="edit-mindsetDesc3"
+                                    rows="4">시간의 가치를 이해하고 신속하게 행동합니다. 고객의 기대를 초과하는 빠른 대응과 실행력으로 차별화된 서비스를 제공합니다. 긴박감은 단순한 속도가 아닌, 올바른 방향으로의 빠른 실행을 의미합니다.</textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="saveContent('mindset')">
+                                <i class="fas fa-save"></i> 마인드 페이지 저장
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 섹션: 디자인 설정 ===== -->
+            <div class="admin-section" id="section-design" style="display:none;">
+                <div class="admin-page-header">
+                    <h1>🎨 디자인 설정</h1>
+                    <p>웹사이트의 색상, 폰트 등 디자인을 커스터마이징하세요.</p>
+                </div>
+
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>🎨 테마 색상</h3>
+                    </div>
+                    <div class="admin-card-body">
+                        <form class="admin-form" id="designForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label><i class="fas fa-fill-drip"></i> 배경색 (메인)</label>
+                                    <div class="color-input-group">
+                                        <input type="color" id="theme-bgPrimary" value="#FFFDE7">
+                                        <input type="text" id="theme-bgPrimary-text" value="#FFFDE7"
+                                            placeholder="#FFFDE7">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fas fa-fill-drip"></i> 배경색 (보조)</label>
+                                    <div class="color-input-group">
+                                        <input type="color" id="theme-bgSecondary" value="#FFF8E1">
+                                        <input type="text" id="theme-bgSecondary-text" value="#FFF8E1"
+                                            placeholder="#FFF8E1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label><i class="fas fa-droplet"></i> 포인트 컬러 (민트)</label>
+                                    <div class="color-input-group">
+                                        <input type="color" id="theme-accentMint" value="#26A69A">
+                                        <input type="text" id="theme-accentMint-text" value="#26A69A"
+                                            placeholder="#26A69A">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fas fa-droplet"></i> 포인트 밝은 색</label>
+                                    <div class="color-input-group">
+                                        <input type="color" id="theme-accentMintLight" value="#4DB6AC">
+                                        <input type="text" id="theme-accentMintLight-text" value="#4DB6AC"
+                                            placeholder="#4DB6AC">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label><i class="fas fa-font"></i> 텍스트 색상</label>
+                                    <div class="color-input-group">
+                                        <input type="color" id="theme-textPrimary" value="#2D3436">
+                                        <input type="text" id="theme-textPrimary-text" value="#2D3436"
+                                            placeholder="#2D3436">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fas fa-font"></i> 보조 텍스트 색상</label>
+                                    <div class="color-input-group">
+                                        <input type="color" id="theme-textSecondary" value="#636E72">
+                                        <input type="text" id="theme-textSecondary-text" value="#636E72"
+                                            placeholder="#636E72">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-text-height"></i> 폰트</label>
+                                <select id="theme-fontFamily">
+                                    <option value="'Noto Sans KR', sans-serif">Noto Sans KR (기본)</option>
+                                    <option value="'Pretendard', sans-serif">Pretendard</option>
+                                    <option value="'IBM Plex Sans KR', sans-serif">IBM Plex Sans KR</option>
+                                    <option value="'Gothic A1', sans-serif">Gothic A1</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <button type="button" class="btn btn-primary btn-sm" onclick="saveDesign()">
+                                    <i class="fas fa-save"></i> 디자인 저장
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-sm" onclick="previewDesign()">
+                                    <i class="fas fa-eye"></i> 미리보기
+                                </button>
+                                <button type="button" class="btn btn-outline btn-sm" onclick="resetDesign()">
+                                    <i class="fas fa-rotate-left"></i> 기본값 복원
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- 사이드바 토글 (모바일) -->
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="사이드바 토글">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- 토스트 -->
+    <div class="toast" id="toast"></div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/posts.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
