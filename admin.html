@@ -17,6 +17,35 @@
 
 <body>
 
+    <!-- ===== 로그인 오버레이 ===== -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-card">
+            <div class="login-logo">
+                <div class="logo-icon" style="width:56px;height:56px;font-size:1.5rem;"><i class="fas fa-lock"></i>
+                </div>
+            </div>
+            <h2>관리자 로그인</h2>
+            <p class="login-desc">관리자 대시보드에 접속하려면 로그인이 필요합니다.</p>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginId"><i class="fas fa-user"></i> 아이디</label>
+                    <input type="text" id="loginId" placeholder="아이디를 입력하세요" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="loginPw"><i class="fas fa-key"></i> 비밀번호</label>
+                    <input type="password" id="loginPw" placeholder="비밀번호를 입력하세요" required
+                        autocomplete="current-password">
+                </div>
+                <p class="login-error" id="loginError" style="display:none;">아이디 또는 비밀번호가 올바르지 않습니다.</p>
+                <button type="submit" class="btn btn-primary"
+                    style="width:100%;justify-content:center;margin-top:0.5rem;">
+                    <i class="fas fa-sign-in-alt"></i> 로그인
+                </button>
+            </form>
+            <a href="index.html" class="login-back"><i class="fas fa-arrow-left"></i> 메인으로 돌아가기</a>
+        </div>
+    </div>
+
     <!-- ===== 네비게이션 ===== -->
     <nav class="navbar scrolled" id="navbar">
         <div class="nav-container">
@@ -52,6 +81,9 @@
                 <a href="#" data-section="design"><i class="fas fa-palette"></i> 디자인 설정</a>
                 <div class="sidebar-divider"></div>
                 <a href="index.html"><i class="fas fa-external-link-alt"></i> 사이트 보기</a>
+                <div class="sidebar-divider"></div>
+                <a href="#" onclick="handleLogout()" style="color:rgba(234,67,53,0.8);"><i
+                        class="fas fa-sign-out-alt"></i> 로그아웃</a>
             </nav>
         </aside>
 

@@ -1,9 +1,59 @@
 /* ============================================
    admin.js - 관리자 대시보드 기능
-   게시글 관리, 콘텐츠 편집, 디자인 설정
+   로그인 인증, 게시글 관리, 콘텐츠 편집, 디자인 설정
    ============================================ */
 
+// ===== 관리자 인증 시스템 =====
+// 관리자 계정 정보 (ID: admin, PW: stp1234)
+var ADMIN_CREDENTIALS = { id: 'admin', pw: 'stp1234' };
+
+// 로그인 처리
+function handleLogin(e) {
+    e.preventDefault();
+    var inputId = document.getElementById('loginId').value;
+    var inputPw = document.getElementById('loginPw').value;
+    var errorEl = document.getElementById('loginError');
+
+    if (inputId === ADMIN_CREDENTIALS.id && inputPw === ADMIN_CREDENTIALS.pw) {
+        // 로그인 성공 - 세션에 저장 (탭을 닫으면 자동 로그아웃)
+        sessionStorage.setItem('adminLoggedIn', 'true');
+        document.getElementById('loginOverlay').classList.add('hidden');
+        if (errorEl) errorEl.style.display = 'none';
+        loadDashboard();
+    } else {
+        // 로그인 실패
+        if (errorEl) errorEl.style.display = 'block';
+        document.getElementById('loginPw').value = '';
+        document.getElementById('loginPw').focus();
+    }
+}
+
+// 로그아웃 처리
+function handleLogout() {
+    if (confirm('로그아웃 하시겠습니까?')) {
+        sessionStorage.removeItem('adminLoggedIn');
+        document.getElementById('loginOverlay').classList.remove('hidden');
+        document.getElementById('loginId').value = '';
+        document.getElementById('loginPw').value = '';
+    }
+}
+
+// 인증 상태 확인
+function checkAuth() {
+    var overlay = document.getElementById('loginOverlay');
+    if (!overlay) return;
+
+    if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+        overlay.classList.add('hidden');
+    } else {
+        overlay.classList.remove('hidden');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
+
+    // ===== 인증 체크 (가장 먼저 실행) =====
+    checkAuth();
 
     // ===== 사이드바 네비게이션 =====
     const sidebarLinks = document.querySelectorAll('.sidebar-nav a[data-section]');
